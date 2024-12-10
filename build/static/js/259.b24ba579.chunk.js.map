@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/259.b24ba579.chunk.js","mappings":"gKAEA,MAMA,EANkBA,KAEdC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,sB","sources":["pages/404/ErrorPage.tsx"],"sourcesContent":["import React from 'react'\n\nconst ErrorPage = () => {\n  return (\n    <div>This is error page</div>\n  )\n}\n\nexport default ErrorPage"],"names":["ErrorPage","_jsx","children"],"sourceRoot":""}

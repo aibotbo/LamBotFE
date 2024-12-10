@@ -1,0 +1,235 @@
+[33mcommit 2eaafd30fe0de393c2352c9e63aaf47c7d4d2b48[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: root <root@bollbot.net>
+Date:   Wed Jun 12 16:07:42 2024 +0000
+
+    remove mail registry
+
+[33mcommit bbd7641c4ad5d607246b56c7f6a709b6e6dc5427[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Wed Jun 12 22:55:53 2024 +0700
+
+    update
+
+[33mcommit de232aa8c5ea8f118c8bcd7053ccffd1f1618b7c[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 15:10:38 2024 +0700
+
+    fix: metadata
+
+[33mcommit ceb9ebf8fa65a5af0b685719b47908b0b288e0c5[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 14:57:08 2024 +0700
+
+    fix: metadata
+
+[33mcommit fa173a785f5ae91a196af53c7cfb716c89d94448[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 14:45:34 2024 +0700
+
+    fix: metadata
+
+[33mcommit c6cc45add286fa0053125d3e69cc71fb64686370[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 14:32:20 2024 +0700
+
+    fix: metadata
+
+[33mcommit 1cfa0d96744198868266d1794bfabfb3b637ea68[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 14:29:03 2024 +0700
+
+    fix: metadata
+
+[33mcommit 9570ee10499c2b14bf821f4b7c6b634d94b3345a[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 10:01:44 2024 +0700
+
+    fix: metadata
+
+[33mcommit 0b61b410b07d9b02a54b08e71c0ae326053583ae[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 09:47:15 2024 +0700
+
+    fix: metadata
+
+[33mcommit a3f878c2da82199ef2c9458dc8825adee7bd235e[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Wed Jun 12 09:15:48 2024 +0700
+
+    fix: metadata
+
+[33mcommit f259ff5a7fc8c5896ee070e0189b785dc14d31ed[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Wed Jun 12 02:00:56 2024 +0700
+
+    update
+
+[33mcommit 08cb74f30c010c42c1869ec3a989829ba4b286f1[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Wed Jun 12 01:55:44 2024 +0700
+
+    update
+
+[33mcommit 9511674860543c07791f7e51f55fed78b76b3de6[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Wed Jun 12 01:55:06 2024 +0700
+
+    update
+
+[33mcommit 124f98da26f1d53c1933b742e8d84784f8fd56f3[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Wed Jun 12 01:47:37 2024 +0700
+
+    update
+
+[33mcommit 3a04b7d34784505d8d1cb6ff069bb86e9452767e[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Tue Jun 11 20:39:42 2024 +0700
+
+    update
+
+[33mcommit b56adb2763896d4f53d2779062038aa768add6ef[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Tue Jun 11 00:36:27 2024 +0700
+
+    update
+
+[33mcommit 2ecbd8c380e2c4a50f85ea0d5b0a89aada682383[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Tue Jun 11 00:34:05 2024 +0700
+
+    update
+
+[33mcommit a3310d4ff55307e5181d563aad42f00b84f42e94[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Tue Jun 11 00:28:35 2024 +0700
+
+    update
+
+[33mcommit 606742a4936a67f79619366d2c88fc7518beede4[m
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Mon Jun 10 14:23:34 2024 +0700
+
+    fix: metadata
+
+[33mcommit 02b114db475d379218540a3f65ddf52099343f2c[m
+Merge: 8bdf5bd 7ceb169
+Author: Nguyen Thanh An <annt2@unitech.net>
+Date:   Mon Jun 10 13:47:24 2024 +0700
+
+    Merge branch 'main' of https://github.com/nguyenbfo/FEBOT2024
+
+[33mcommit 7ceb169d739a8d860f3ce272505045098070ab8a[m
+Author: root <root@bollbot.net>
+Date:   Mon Jun 10 03:15:58 2024 +0000
+
+    new logo
+
+[33mcommit 8bdf5bd9f6d1ac5c307dc1de0395a528adafa61a[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Mon Jun 10 09:00:07 2024 +0700
+
+    update
+
+[33mcommit 72a05aca2911d6e5234ec3a063f1884520b2daf6[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Fri Jun 7 18:35:26 2024 +0700
+
+    update
+
+[33mcommit 4dd65754cef988f7ef5fb9c483b556ea04cd41a8[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Fri Jun 7 16:54:53 2024 +0700
+
+    update
+
+[33mcommit c83de3bd15044e0e4c09da1e59133560831a1cdb[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Fri Jun 7 16:39:20 2024 +0700
+
+    update
+
+[33mcommit 502ea358ea98f6103c273fb5764bd2670d4f1ba2[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 16:32:55 2024 +0700
+
+    update
+
+[33mcommit 4eb3a66c74d87d282b49b659c11b5c7c6241496e[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 15:48:03 2024 +0700
+
+    update
+
+[33mcommit 7393c71d92506f33fbe196a7199d48a0aba6b4b6[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 14:31:03 2024 +0700
+
+    update
+
+[33mcommit 95afffe4073eaed6541c04e67600e1045f315ff7[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 14:14:09 2024 +0700
+
+    update
+
+[33mcommit e019c215fcc46f4c8309ba615e8626e127235cd8[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 14:11:31 2024 +0700
+
+    update
+
+[33mcommit dd3d2ee9fe708cb846c2a4c4fd4753784fb31899[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 12:20:27 2024 +0700
+
+    update
+
+[33mcommit d7b924a0073d1c7ea7ecce41872a71c6373280a0[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 12:16:01 2024 +0700
+
+    update
+
+[33mcommit 699e3995a355e2c67ae2e99d8f3a309bc3a931cd[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 11:15:10 2024 +0700
+
+    update
+
+[33mcommit 184c6fac88426cc128441993b1c0f47fa12d5a8e[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 10:54:16 2024 +0700
+
+    update
+
+[33mcommit f3dd505dca81ccaba342efa5ca2ea50352df62b8[m[33m ([m[1;31morigin/dev_annt[m[33m)[m
+Merge: 2d1ab27 92cc04c
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 10:48:19 2024 +0700
+
+    update
+
+[33mcommit 2d1ab27522763ed2f2d1c3c92099082985d48003[m
+Author: thành an nguyễn <thanhan7112@gmail.com>
+Date:   Thu Jun 6 09:37:41 2024 +0700
+
+    update
+
+[33mcommit 92cc04ce16d2af5dad412604b69620a4f1de9534[m
+Author: root <root@bollbot.net>
+Date:   Thu Jun 6 02:25:49 2024 +0000
+
+    Initial commit
+
+[33mcommit d270fe6404cdb838caab0c4f470eafe8afa914d9[m
+Author: root <root@bollbot.net>
+Date:   Thu Jun 6 02:19:39 2024 +0000
+
+    Add existing project files to Git
+
+[33mcommit 1539414d31ab8dac2f8ea5e8dbf9f076bd999954[m
+Author: root <root@bollbot.net>
+Date:   Wed Jun 5 07:24:33 2024 +0000
+
+    Your commit message here

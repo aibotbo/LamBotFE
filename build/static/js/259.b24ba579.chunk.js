@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktrade_bo_fe=self.webpackChunktrade_bo_fe||[]).push([[259],{36259:(e,r,s)=>{s.r(r),s.d(r,{default:()=>d});s(72791);var a=s(80184);const d=()=>(0,a.jsx)("div",{children:"This is error page"})}}]);
+//# sourceMappingURL=259.b24ba579.chunk.js.map

@@ -1,0 +1,138 @@
+.custom-tab {
+    .ant-tabs-nav {
+        .ant-tabs-nav-wrap {
+            .ant-tabs-nav-list {
+                .ant-tabs-tab {
+                    border: none !important;
+                    background-color: transparent;
+                    color: rgb(160, 160, 160);
+                    font-size: 13px;
+
+                    &.ant-tabs-tab-active {
+                        .ant-tabs-tab-btn {
+                            .label {
+                                background-image: var(--color-primary-100) !important;
+                                color: transparent !important;
+                                background-clip: text !important;
+                            }
+                        }
+                    }
+
+                    .ant-tabs-tab-remove {
+                        color: var(--color-primary-100);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+
+                .ant-tabs-nav-add {
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+.space-ant-custom {
+    display: grid;
+    align-items: normal !important;
+    grid-template-columns: 1fr 1fr 1fr 40px;
+    gap: 4px;
+    .ant-space-item{
+       position: relative;
+    }
+}
+
+.bb-custom-select {
+    .ant-select-selector {
+        background-color: transparent !important;
+
+        * {
+            color: white !important;
+            font-size: 12px;
+            font-weight: 550;
+        }
+        .ant-select-selection-item{
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .ant-select-arrow {
+        color: white !important;
+    }
+}
+
+.dropdown-custom {
+    background-color: #1D1B18 !important;
+    *{
+        color: white
+    }
+    .ant-select-item-option-active{
+        background-color: #161412 !important;
+    }
+    .ant-select-item-option-selected{
+        background-color: #161412 !important;
+    }
+    &.center{
+        .ant-select-item{
+            display: flex;
+            align-items: center;
+        } 
+    }
+}
+
+.class-item-custom{
+    .ant-form-item-row{
+        // position: relative;
+        .custom-label{
+            // position: absolute;c
+            color: white;
+            font-size: 12px;
+            font-weight: 550;
+        }
+    }
+}
+
+.custom-add-field{
+    color: white !important;
+    font-size: 13px;
+    font-weight: 550;
+    background-color: #07a42e !important;
+    :hover{
+        background-color: #07a42e !important;
+    }
+}
+
+.disable-remove{
+    background-color: #403e3e !important;
+}
+
+.dot{
+    width: 14px;
+    height: 14px;
+    margin-top: auto;
+    border-radius: 9999px;
+    &.red{
+        background-color: #C2180F;
+    }
+}
+
+.count-bubble {
+    position: absolute;
+    top: -4px;
+    right: 0;
+    background-color: white;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    font-size: 12px;
+    color: black;
+}

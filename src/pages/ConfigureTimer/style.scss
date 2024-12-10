@@ -1,0 +1,7 @@
+.button-add{
+    width: fit-content !important;
+    margin-left: auto;
+    &.disable{
+        background-image: var(--color-primary-60);
+    }
+}

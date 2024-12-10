@@ -1,0 +1,46 @@
+.custom-range-picker {
+  padding: 0.5rem 0.75rem;
+  background-color: transparent !important;
+  border: unset;
+
+  // FOR BORDER
+
+  &.ant-picker-focused {
+    border: unset;
+    box-shadow: unset;
+
+    &::before {
+      background: var(--color-primary-100);
+    }
+  }
+
+  & .ant-picker-input {
+    input {
+      color: var(--color-ink-100);
+
+      &::placeholder {
+        color: var(--color-ink-40);
+      }
+    }
+
+    &.ant-picker-input-active {
+      border: unset;
+    }
+  }
+
+  & .ant-picker-range-separator {
+    padding: 0 1rem;
+  }
+
+  & .ant-picker-active-bar {
+    display: none;
+  }
+
+  &:has(.ant-picker-clear:hover) .ant-picker-suffix {
+    opacity: 0;
+  }
+
+  & .ant-picker-clear {
+    background: transparent;
+  }
+}
