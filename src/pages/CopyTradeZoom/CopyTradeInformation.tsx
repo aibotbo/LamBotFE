@@ -517,7 +517,6 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({
     // } else {
     //   // MASTER ORDER
     //   const orderAmountConverted = +orderAmount.toString().replace(',', '');
-
     //   const order = {
     //     orderType,
     //     orderAmount: orderAmountConverted.toString(),
