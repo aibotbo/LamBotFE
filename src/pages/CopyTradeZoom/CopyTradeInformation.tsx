@@ -462,82 +462,61 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({
 
   const placeOrder = async (orderType: OrderType) => {
     const noLoadingAxios = axios.create();
-    const orderAmountConverted = +orderAmount.toString().replace(",", "");
 
-    const order = {
-      orderType,
-      orderAmount: orderAmountConverted.toString(),
-      botId: selectedBotAccount.value,
-      fold: 1,
-    };
-    noLoadingAxios
-      .post(APIs.placeCopyTradeOrder, order)
-      .then((res) => {
-        getBalance(selectedBotAccount.value);
-        enqueueSnackbar("Đặt lệnh thành công!", {
-          variant: "success",
+    if (isMaster === 1) {
+      // SELF ORDER
+      const orderAmountConverted = +orderAmount.toString().replace(',', '');
+      const order = {
+        orderType,
+        accountType: selectedAccountType.value.toString(),
+        orderAmount: orderAmountConverted.toString(),
+        botId: selectedBotAccount.value,
+        fold: 1,
+      };
+      noLoadingAxios
+        .post(APIs.placeOrder, order)
+        .then((res) => {
+          if (res.data.ok) {
+            getBalance(selectedBotAccount.value);
+            enqueueSnackbar(`Đặt lệnh $${orderAmount} thành công!`, {
+              variant: 'success',
+            });
+          } else {
+            enqueueSnackbar(`Đặt lệnh thất bại: ${res.data.m}`, {
+              variant: 'error',
+            });
+          }
+        })
+        .catch((err) => {
+          getCurrentSession();
+          enqueueSnackbar('', {
+            variant: 'error',
+          });
         });
-      })
-      .catch((err) => {
-        getCurrentSession();
-        enqueueSnackbar("Đặt lệnh thất bại", {
-          variant: "error",
+    } else {
+      // MASTER ORDER
+      const orderAmountConverted = +orderAmount.toString().replace(',', '');
+      const order = {
+        orderType,
+        orderAmount: orderAmountConverted.toString(),
+        botId: selectedBotAccount.value,
+        fold: 1,
+      };
+      noLoadingAxios
+        .post(APIs.placeCopyTradeOrder, order)
+        .then((res) => {
+          getBalance(selectedBotAccount.value);
+          enqueueSnackbar('Đặt lệnh thành công!', {
+            variant: 'success',
+          });
+        })
+        .catch((err) => {
+          getCurrentSession();
+          enqueueSnackbar('Đặt lệnh thất bại', {
+            variant: 'error',
+          });
         });
-      });
-    // if (isMaster !== 2) {
-    //   // SELF ORDER
-    //   const orderAmountConverted = +orderAmount.toString().replace(',', '');
-    //   const order = {
-    //     orderType,
-    //     accountType: selectedAccountType.value.toString(),
-    //     orderAmount: orderAmountConverted.toString(),
-    //     botId: selectedBotAccount.value,
-    //     fold: 1,
-    //   };
-    //   noLoadingAxios
-    //     .post(APIs.placeOrder, order)
-    //     .then((res) => {
-    //       if (res.data.ok) {
-    //         getBalance(selectedBotAccount.value);
-    //         enqueueSnackbar(`Đặt lệnh $${orderAmount} thành công!`, {
-    //           variant: 'success',
-    //         });
-    //       } else {
-    //         enqueueSnackbar(`Đặt lệnh thất bại: ${res.data.m}`, {
-    //           variant: 'error',
-    //         });
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       getCurrentSession();
-    //       enqueueSnackbar('', {
-    //         variant: 'error',
-    //       });
-    //     });
-    // } else {
-    //   // MASTER ORDER
-    //   const orderAmountConverted = +orderAmount.toString().replace(',', '');
-    //   const order = {
-    //     orderType,
-    //     orderAmount: orderAmountConverted.toString(),
-    //     botId: selectedBotAccount.value,
-    //     fold: 1,
-    //   };
-    //   noLoadingAxios
-    //     .post(APIs.placeCopyTradeOrder, order)
-    //     .then((res) => {
-    //       getBalance(selectedBotAccount.value);
-    //       enqueueSnackbar('Đặt lệnh thành công!', {
-    //         variant: 'success',
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       getCurrentSession();
-    //       enqueueSnackbar('Đặt lệnh thất bại', {
-    //         variant: 'error',
-    //       });
-    //     });
-    // }
+    }
   };
 
   const getBalance = useCallback(
