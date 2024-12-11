@@ -42,7 +42,7 @@ const INITIAL_SELECTED_ACCOUNT_TYPE: InputSelectOption = {
 };
 
 const CopyTradeZoom = () => {
-  const [isMaster, setIsMaster] = useState(0);
+  const [isMaster, setIsMaster] = useState<number>(0);
   const [shapes, setShapes] = useState(generateShapes());
   const [isFollowing, setIsFollowing] = useState(true);
   const [searchInputTable, setSearchInputTable] = useState('');
@@ -122,7 +122,7 @@ const CopyTradeZoom = () => {
   return (
     <>
       <Helmet>
-        <title>BotLambotrade AI | Copy Trade</title>
+        <title> BotLambotrade AI | Copy Trade</title>
       </Helmet>
 
       <CopyTradeType isMaster={isMaster} setIsMaster={setIsMaster} />

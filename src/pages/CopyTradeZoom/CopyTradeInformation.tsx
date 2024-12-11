@@ -1,32 +1,32 @@
-import APIs from 'apis';
-import images from 'assets';
-import axios from 'axios';
-import React, { FC, useCallback, useEffect, useState } from 'react';
-import CurrencyInput, { CurrencyInputProps } from 'react-currency-input-field';
+import APIs from "apis";
+import images from "assets";
+import axios from "axios";
+import React, { FC, useCallback, useEffect, useState } from "react";
+import CurrencyInput, { CurrencyInputProps } from "react-currency-input-field";
 import ICurrentSession, {
   ISession,
   ISessionLocal,
-} from '../../types/ICurrentSession';
-import moment from 'moment';
-import CopyTradeZoomSelectInput from './CopyTradeZoomSelectInput';
-import { useAppDispatch } from 'stores/hooks';
-import BotData from 'types/BotData';
-import { uiActions } from 'stores/uiSlice';
-import { BotBalance } from 'types/BotBalance';
-import InputSelectOption from 'types/InputSelectOption';
-import { BotPlaceOrderResponse } from 'types/BotPlaceOrderResponse';
-import { Link, useNavigate } from 'react-router-dom';
-import { userActions } from 'stores/userSlice';
-import { useEnqueueSnackbar } from 'hooks/useEnqueueSnackbar';
-import useWindowFocus from 'hooks/useWindowFocus';
-import CustomModal from 'components/CustomModal';
-import GoldButton from 'components/GoldButton';
-import CustomButton from 'components/CustomButton';
-import CustomValidateModel from 'components/CustomValidateModal';
-import CustomValidateModelProps from 'types/CustomValidateProps';
-import convertToThreeDecimalPlaces from '../../utils/ConvertToThreeDecimalPlaces';
-import CustomInputSpinner from 'components/CustomInputSpinner';
-import { CopyTradeTotalFollowResponse } from 'types/responses/CopyTradeTotalFollowResponse';
+} from "../../types/ICurrentSession";
+import moment from "moment";
+import CopyTradeZoomSelectInput from "./CopyTradeZoomSelectInput";
+import { useAppDispatch } from "stores/hooks";
+import BotData from "types/BotData";
+import { uiActions } from "stores/uiSlice";
+import { BotBalance } from "types/BotBalance";
+import InputSelectOption from "types/InputSelectOption";
+import { BotPlaceOrderResponse } from "types/BotPlaceOrderResponse";
+import { Link, useNavigate } from "react-router-dom";
+import { userActions } from "stores/userSlice";
+import { useEnqueueSnackbar } from "hooks/useEnqueueSnackbar";
+import useWindowFocus from "hooks/useWindowFocus";
+import CustomModal from "components/CustomModal";
+import GoldButton from "components/GoldButton";
+import CustomButton from "components/CustomButton";
+import CustomValidateModel from "components/CustomValidateModal";
+import CustomValidateModelProps from "types/CustomValidateProps";
+import convertToThreeDecimalPlaces from "../../utils/ConvertToThreeDecimalPlaces";
+import CustomInputSpinner from "components/CustomInputSpinner";
+import { CopyTradeTotalFollowResponse } from "types/responses/CopyTradeTotalFollowResponse";
 
 interface IPlaceOrder {
   orderType: string;
@@ -36,8 +36,8 @@ interface IPlaceOrder {
 }
 
 enum OrderType {
-  BUY = 'BUY',
-  SELL = 'SELL',
+  BUY = "BUY",
+  SELL = "SELL",
 }
 
 const INITIAL_BOT_BALANCE = {
@@ -48,37 +48,40 @@ const INITIAL_BOT_BALANCE = {
 
 const INITIAL_SELECT_OPTIONS: InputSelectOption[] = [
   {
-    value: '',
-    label: '',
+    value: "",
+    label: "",
   },
 ];
 
 const INITIAL_SELECTED_OPTION: InputSelectOption = {
-  value: '',
-  label: '',
+  value: "",
+  label: "",
 };
 
 const INITIAL_SELECTED_ACCOUNT_TYPE: InputSelectOption = {
-  value: 'LIVE',
-  label: 'Tài khoản LIVE',
+  value: "LIVE",
+  label: "Tài khoản LIVE",
 };
 
 const ACCOUNT_TYPES = [
   {
-    value: 'DEMO',
-    label: 'Tài khoản DEMO',
+    value: "DEMO",
+    label: "Tài khoản DEMO",
   },
   {
-    value: 'LIVE',
-    label: 'Tài khoản LIVE',
+    value: "LIVE",
+    label: "Tài khoản LIVE",
   },
 ];
 
-const SESSION_TYPES = ['WAIT', 'TRADE'];
+const SESSION_TYPES = ["WAIT", "TRADE"];
 
-type CopyTradeInformationProps = { isMaster: number, callback: (value: boolean) => void };
+type CopyTradeInformationProps = {
+  isMaster: number;
+  callback: (value: boolean) => void;
+};
 
-const PLUS_VALUES = [5, 10, 20, 50, 100, 'All'];
+const PLUS_VALUES = [5, 10, 20, 50, 100, "All"];
 const MULTIPLY_VALUES = [2, 5, 10, 20, 40, 100];
 
 const TIME_IN_ONE_SESSION = 30;
@@ -86,10 +89,13 @@ const TIME_IN_ONE_SESSION = 30;
 const options: Intl.NumberFormatOptions = {
   minimumFractionDigits: 0,
   maximumFractionDigits: 3,
-  style: 'decimal',
+  style: "decimal",
 };
 
-const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callback }) => {
+const CopyTradeInformation: FC<CopyTradeInformationProps> = ({
+  isMaster,
+  callback,
+}) => {
   const [partnerBotDatas, setPartnerBotDatas] = useState<BotData[]>([]);
   const [botBalance, setBotBalance] = useState<BotBalance>(INITIAL_BOT_BALANCE);
   const [orderAmount, setOrderAmount] = useState<string | number>(1);
@@ -106,18 +112,18 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
 
   // SESSION
   const [sessionLocal, setSessionLocal] = useState<ISessionLocal>({
-    ss_t: '',
+    ss_t: "",
     r_second: 0,
   });
   const [sessionId, setSessionId] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
   const [startSession, setStartSession] = useState<ISession>({
     ss_id: 0,
-    ss_t: 'WAIT',
+    ss_t: "WAIT",
     o_price: 0,
     c_price: 0,
     r_second: 0,
-    st_time: moment().format('YYYY-MM-DDTHH:mm:ss.SSSS'),
+    st_time: moment().format("YYYY-MM-DDTHH:mm:ss.SSSS"),
   });
 
   // FOLLOWERS
@@ -134,12 +140,12 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
   const [modalAttributes, setModalAttributes] =
     useState<CustomValidateModelProps>({
       isOpen: false,
-      icon: '',
-      headingMessage: '',
-      message: '',
-      buttonMessage: '',
-      handleOpen: () => { },
-      handleClose: () => { },
+      icon: "",
+      headingMessage: "",
+      message: "",
+      buttonMessage: "",
+      handleOpen: () => {},
+      handleClose: () => {},
     });
 
   // HOOKS
@@ -162,12 +168,12 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
       isOpen: false,
     }));
     if (
-      (selectedAccountType.value === 'DEMO' && botBalance.demo_balance >= 1)
-      || (selectedAccountType.value !== 'DEMO' && botBalance.balance >= 1)
+      (selectedAccountType.value === "DEMO" && botBalance.demo_balance >= 1) ||
+      (selectedAccountType.value !== "DEMO" && botBalance.balance >= 1)
     ) {
       setOrderAmount(1);
     } else {
-      setOrderAmount(Math.max(+orderAmount, 0))
+      setOrderAmount(Math.max(+orderAmount, 0));
     }
     setMultiplyAmount(1);
   };
@@ -184,7 +190,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
       ...prev,
       isOpen: false,
     }));
-    navigate('/account_trade');
+    navigate("/account_trade");
   };
 
   // const isTabVisible = useWindowFocus(() => {
@@ -202,12 +208,12 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
     //     return convertedValue;
     //   });
     // }
-    setOrderAmount((prev) => Math.max(0, +prev - 1))
+    setOrderAmount((prev) => Math.max(0, +prev - 1));
   };
 
   const handleOrderAmountPlusOne = () => {
     // console.log(+orderAmount);
-    const isDemoAccount = selectedAccountType.value === 'DEMO';
+    const isDemoAccount = selectedAccountType.value === "DEMO";
     if (partnerBotDatas.length === 0) {
       setOrderAmount((prev) => {
         const convertedValue = convertToThreeDecimalPlaces(+prev + 1);
@@ -270,12 +276,12 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
     }
   };
 
-  const handleOrderAmount: CurrencyInputProps['onValueChange'] = (
+  const handleOrderAmount: CurrencyInputProps["onValueChange"] = (
     value,
     _,
     values
   ): void => {
-    const valueToSet = value === undefined ? '' : value;
+    const valueToSet = value === undefined ? "" : value;
     const convertedValue = convertToThreeDecimalPlaces(valueToSet);
     setOrderAmount(convertedValue);
 
@@ -303,12 +309,12 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
     // }
   };
 
-  const handleMultiplyAmount: CurrencyInputProps['onValueChange'] = (
+  const handleMultiplyAmount: CurrencyInputProps["onValueChange"] = (
     value,
     _,
     values
   ): void => {
-    const valueToSet = value === undefined ? '' : value;
+    const valueToSet = value === undefined ? "" : value;
     const convertedValue = convertToThreeDecimalPlaces(valueToSet);
     // console.log('convertedValue', convertedValue);
     setMultiplyAmount(convertedValue);
@@ -342,7 +348,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
       .then((res) => {
         const datas: BotData[] = res.data;
         const partnerBotDatas = datas.filter(
-          (data) => data.status === 'active'
+          (data) => data.status === "active"
         );
         setPartnerBotDatas(partnerBotDatas);
         dispatch(userActions.updatePartnerBotDatas(partnerBotDatas));
@@ -356,7 +362,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
         //   icon: images.toast.error,
         // };
         // dispatch(uiActions.showNotifications(notification));
-        enqueueSnackbar('Không thể lấy bot datas', { variant: 'error' });
+        enqueueSnackbar("Không thể lấy bot datas", { variant: "error" });
       });
   }, [dispatch, enqueueSnackbar]);
 
@@ -377,7 +383,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
     const currentSecond = moment().second() - 1;
     const MAXIMUM_SECOND_IN_A_MINUTE = 60;
     const START_SESSION_SECOND_CONVERTED = +moment(startSession.st_time).format(
-      'ss'
+      "ss"
     );
 
     const START_SESSION =
@@ -445,8 +451,8 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
     if (isEndSession && sessionId !== 0) {
       getAllPartnerBots();
     }
-    if(timeLeft === 25 || timeLeft === 29){
-      callback(sessionType === 'TRADE')
+    if (timeLeft === 25 || timeLeft === 29) {
+      callback(sessionType === "TRADE");
     }
     setSessionLocal({
       r_second: timeLeft,
@@ -456,61 +462,83 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
 
   const placeOrder = async (orderType: OrderType) => {
     const noLoadingAxios = axios.create();
-    if (isMaster !== 2) {
-      // SELF ORDER
-      const orderAmountConverted = +orderAmount.toString().replace(',', '');
-      const order = {
-        orderType,
-        accountType: selectedAccountType.value.toString(),
-        orderAmount: orderAmountConverted.toString(),
-        botId: selectedBotAccount.value,
-        fold: 1,
-      };
-      noLoadingAxios
-        .post(APIs.placeOrder, order)
-        .then((res) => {
-          if (res.data.ok) {
-            getBalance(selectedBotAccount.value);
-            enqueueSnackbar(`Đặt lệnh $${orderAmount} thành công!`, {
-              variant: 'success',
-            });
-          } else {
-            enqueueSnackbar(`Đặt lệnh thất bại: ${res.data.m}`, {
-              variant: 'error',
-            });
-          }
-        })
-        .catch((err) => {
-          getCurrentSession();
-          enqueueSnackbar('', {
-            variant: 'error',
-          });
-        });
-    } else {
-      // MASTER ORDER
-      const orderAmountConverted = +orderAmount.toString().replace(',', '');
+    const orderAmountConverted = +orderAmount.toString().replace(",", "");
 
-      const order = {
-        orderType,
-        orderAmount: orderAmountConverted.toString(),
-        botId: selectedBotAccount.value,
-        fold: 1,
-      };
-      noLoadingAxios
-        .post(APIs.placeCopyTradeOrder, order)
-        .then((res) => {
-          getBalance(selectedBotAccount.value);
-          enqueueSnackbar('Đặt lệnh thành công!', {
-            variant: 'success',
-          });
-        })
-        .catch((err) => {
-          getCurrentSession();
-          enqueueSnackbar('Đặt lệnh thất bại', {
-            variant: 'error',
-          });
+    const order = {
+      orderType,
+      orderAmount: orderAmountConverted.toString(),
+      botId: selectedBotAccount.value,
+      fold: 1,
+    };
+    noLoadingAxios
+      .post(APIs.placeCopyTradeOrder, order)
+      .then((res) => {
+        getBalance(selectedBotAccount.value);
+        enqueueSnackbar("Đặt lệnh thành công!", {
+          variant: "success",
         });
-    }
+      })
+      .catch((err) => {
+        getCurrentSession();
+        enqueueSnackbar("Đặt lệnh thất bại", {
+          variant: "error",
+        });
+      });
+    // if (isMaster !== 2) {
+    //   // SELF ORDER
+    //   const orderAmountConverted = +orderAmount.toString().replace(',', '');
+    //   const order = {
+    //     orderType,
+    //     accountType: selectedAccountType.value.toString(),
+    //     orderAmount: orderAmountConverted.toString(),
+    //     botId: selectedBotAccount.value,
+    //     fold: 1,
+    //   };
+    //   noLoadingAxios
+    //     .post(APIs.placeOrder, order)
+    //     .then((res) => {
+    //       if (res.data.ok) {
+    //         getBalance(selectedBotAccount.value);
+    //         enqueueSnackbar(`Đặt lệnh $${orderAmount} thành công!`, {
+    //           variant: 'success',
+    //         });
+    //       } else {
+    //         enqueueSnackbar(`Đặt lệnh thất bại: ${res.data.m}`, {
+    //           variant: 'error',
+    //         });
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       getCurrentSession();
+    //       enqueueSnackbar('', {
+    //         variant: 'error',
+    //       });
+    //     });
+    // } else {
+    //   // MASTER ORDER
+    //   const orderAmountConverted = +orderAmount.toString().replace(',', '');
+
+    //   const order = {
+    //     orderType,
+    //     orderAmount: orderAmountConverted.toString(),
+    //     botId: selectedBotAccount.value,
+    //     fold: 1,
+    //   };
+    //   noLoadingAxios
+    //     .post(APIs.placeCopyTradeOrder, order)
+    //     .then((res) => {
+    //       getBalance(selectedBotAccount.value);
+    //       enqueueSnackbar('Đặt lệnh thành công!', {
+    //         variant: 'success',
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       getCurrentSession();
+    //       enqueueSnackbar('Đặt lệnh thất bại', {
+    //         variant: 'error',
+    //       });
+    //     });
+    // }
   };
 
   const getBalance = useCallback(
@@ -524,8 +552,8 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
           setBotBalance(data);
         })
         .catch(() => {
-          enqueueSnackbar('Không thể lấy được số dư ví', {
-            variant: 'error',
+          enqueueSnackbar("Không thể lấy được số dư ví", {
+            variant: "error",
           });
         });
     },
@@ -542,8 +570,8 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
         }
       })
       .catch(() => {
-        enqueueSnackbar('Không thể lấy được số dư ví', {
-          variant: 'error',
+        enqueueSnackbar("Không thể lấy được số dư ví", {
+          variant: "error",
         });
       });
   }, [enqueueSnackbar]);
@@ -553,14 +581,14 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
       axios
         .get(`${APIs.reloadDemoBalance}${id}/`)
         .then((res) => {
-          enqueueSnackbar('Đặt lại số dư ví DEMO thành công!', {
-            variant: 'success',
+          enqueueSnackbar("Đặt lại số dư ví DEMO thành công!", {
+            variant: "success",
           });
           getBalance(selectedBotAccount.value);
         })
         .catch(() => {
-          enqueueSnackbar('Đặt lại số dư ví DEMO thất bại!', {
-            variant: 'error',
+          enqueueSnackbar("Đặt lại số dư ví DEMO thất bại!", {
+            variant: "error",
           });
         });
     },
@@ -611,7 +639,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
   // GET BALANCE AND SET SELECTED BOT ACCOUNT
   useEffect(() => {
     if (partnerBotDatas && partnerBotDatas.length > 0) {
-      if (selectedAccountType.value === 'LIVE' && !isPartnerBotInitialized) {
+      if (selectedAccountType.value === "LIVE" && !isPartnerBotInitialized) {
         getBalance(partnerBotDatas[0].id);
         const firstBotOption = {
           value: partnerBotDatas[0].id,
@@ -637,7 +665,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
   ]);
 
   const checkIsValidSubmit = () => {
-    const orderAmountConverted = +orderAmount.toString().replace(',', '');
+    const orderAmountConverted = +orderAmount.toString().replace(",", "");
     const order = {
       orderType: OrderType.BUY,
       accountType: selectedAccountType.value.toString(),
@@ -647,67 +675,67 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
     };
     if (isMaster === 2 && isBuySellValid) {
       placeOrder(OrderType.BUY);
-      return
+      return;
     }
     if (+orderAmount <= 0) {
       setModalAttributes((prev) => ({
         ...prev,
         isOpen: true,
         icon: images.copy.warning,
-        headingMessage: 'Giá trị lệnh không hợp lệ',
+        headingMessage: "Giá trị lệnh không hợp lệ",
         message: (
           <>
             Giá trị lệnh phải lớn hơn <span className="font-bold">0</span>
           </>
         ),
-        buttonMessage: 'Xác nhận',
+        buttonMessage: "Xác nhận",
         handleOpen: handleOpenValidAmountPopupModal,
         handleClose: handleCloseValidAmountPopupModal,
       }));
-      return
+      return;
     }
     if (partnerBotDatas.length > 0) {
       if (
-        selectedAccountType.value === 'DEMO' &&
+        selectedAccountType.value === "DEMO" &&
         +orderAmount > botBalance.demo_balance
       ) {
         setModalAttributes((prev) => ({
           ...prev,
           isOpen: true,
           icon: images.copy.warning,
-          headingMessage: 'Giá trị lệnh không hợp lệ',
+          headingMessage: "Giá trị lệnh không hợp lệ",
           message: (
             <>
               Giá trị lệnh của bạn đã vượt quá số dư <br /> tài khoản nguồn, vui
               lòng thử lại
             </>
           ),
-          buttonMessage: 'Xác nhận',
+          buttonMessage: "Xác nhận",
           handleOpen: handleOpenValidAmountPopupModal,
           handleClose: handleCloseValidAmountPopupModal,
         }));
-        return
+        return;
       }
       if (
-        selectedAccountType.value === 'LIVE' &&
+        selectedAccountType.value === "LIVE" &&
         +orderAmount > botBalance.balance
       ) {
         setModalAttributes((prev) => ({
           ...prev,
           isOpen: true,
           icon: images.copy.warning,
-          headingMessage: 'Giá trị lệnh không hợp lệ',
+          headingMessage: "Giá trị lệnh không hợp lệ",
           message: (
             <>
               Giá trị lệnh của bạn đã vượt quá số dư tài khoản nguồn, vui lòng
               thử lại
             </>
           ),
-          buttonMessage: 'Xác nhận',
+          buttonMessage: "Xác nhận",
           handleOpen: handleOpenValidAmountPopupModal,
           handleClose: handleCloseValidAmountPopupModal,
         }));
-        return
+        return;
       }
     }
     if (partnerBotDatas.length === 0 && isBuySellValid) {
@@ -715,23 +743,23 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
         ...prev,
         isOpen: true,
         icon: images.copy.account_not_integrate,
-        headingMessage: 'Bạn chưa liên kết tài khoản',
+        headingMessage: "Bạn chưa liên kết tài khoản",
         message: (
           <>
-            Liên kết tài khoản ngay để thực hiện giao dịch cùng đội
-            ngũ chuyên gia của BotLambotrade
+            Liên kết tài khoản ngay để thực hiện giao dịch cùng đội ngũ chuyên
+            gia của BotLambotrade
           </>
         ),
-        buttonMessage: 'Liên kết tài khoản',
+        buttonMessage: "Liên kết tài khoản",
         handleOpen: handleOpenAccountTradePopupModal,
         handleClose: handleCloseAccountTradePopupModal,
       }));
     } else if (isBuySellValid) {
       placeOrder(OrderType.BUY);
     }
-  }
+  };
 
-  const isSessionTrading = sessionLocal.ss_t === 'TRADE';
+  const isSessionTrading = sessionLocal.ss_t === "TRADE";
 
   // const isBuySellValid = isSessionTrading && partnerBotDatas.length > 0;
   const isBuySellValid = isSessionTrading;
@@ -767,7 +795,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                 <div className="px-3 flex items-center justify-between">
                   <div className="flex items-center gap-x-2">
                     <p className="text-sm text-ink-100">Số dư ví:</p>
-                    {selectedAccountType.value === 'DEMO' && (
+                    {selectedAccountType.value === "DEMO" && (
                       <img
                         onClick={() => {
                           reloadDemoBalance(selectedBotAccount.value);
@@ -780,11 +808,11 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                   </div>
                   <p className="bg-primary-100 bg-clip-text text-transparent text-xl">
                     $
-                    {selectedAccountType.value === 'DEMO'
-                      ? botBalance.demo_balance.toLocaleString('en-US', options)
-                      : selectedAccountType.value === 'LIVE'
-                        ? botBalance.balance.toLocaleString('en-US', options)
-                        : 0}
+                    {selectedAccountType.value === "DEMO"
+                      ? botBalance.demo_balance.toLocaleString("en-US", options)
+                      : selectedAccountType.value === "LIVE"
+                      ? botBalance.balance.toLocaleString("en-US", options)
+                      : 0}
                   </p>
                 </div>
               )}
@@ -792,9 +820,9 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
               {partnerBotDatas.length === 0 && (
                 <div className="mb-4 flex justify-between items-center">
                   <p className={`font-semibold text-sm text-gold`}>
-                    Bạn chưa liên kết tài khoản Lambotradevới sàn, vui lòng ấn vào
-                    nút thêm mới tài khoản giao dịch để thực hiện liên kết tài
-                    khoản giao dịch
+                    Bạn chưa liên kết tài khoản Lambotradevới sàn, vui lòng ấn
+                    vào nút thêm mới tài khoản giao dịch để thực hiện liên kết
+                    tài khoản giao dịch
                   </p>
                 </div>
               )}
@@ -1013,7 +1041,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                   setIsOrderAmountFocus(true);
                 }}
                 onBlur={(e) => {
-                  if (Number((e.target.value.replace('$', '').trim() || 0)) <= 0)
+                  if (Number(e.target.value.replace("$", "").trim() || 0) <= 0)
                     setIsOrderAmountFocus(false);
                 }}
                 handleValueMinusOne={handleOrderAmountMinusOne}
@@ -1022,21 +1050,21 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                   // console.log('TYPE OF VALUE: ', typeof value);
                   // CHECK PARTNER BOT NOT INTEGRATED
                   if (partnerBotDatas.length === 0) {
-                    if (typeof value === 'number') {
+                    if (typeof value === "number") {
                       setOrderAmount((prev) => +prev + +value);
                     } else {
                       setModalAttributes((prev) => ({
                         ...prev,
                         isOpen: true,
                         icon: images.copy.account_not_integrate,
-                        headingMessage: 'Bạn chưa liên kết tài khoản',
+                        headingMessage: "Bạn chưa liên kết tài khoản",
                         message: (
                           <>
                             Liên kết tài khoản ngay để thực hiện giao dịch cùng
                             đội ngũ chuyên gia của BotLambotrade
                           </>
                         ),
-                        buttonMessage: 'Liên kết tài khoản',
+                        buttonMessage: "Liên kết tài khoản",
                         handleOpen: handleOpenAccountTradePopupModal,
                         handleClose: handleCloseAccountTradePopupModal,
                       }));
@@ -1045,16 +1073,16 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                   }
 
                   // CHECK IF PARTNER BOT ALREADY ASSOCIATED
-                  const isDemoAccount = selectedAccountType.value === 'DEMO';
+                  const isDemoAccount = selectedAccountType.value === "DEMO";
                   if (isDemoAccount) {
                     const demoBalance = botBalance.demo_balance;
                     const plusAmount = +value;
                     // +orderAmount + +value
                     if (
-                      typeof value === 'number' &&
+                      typeof value === "number" &&
                       plusAmount <= demoBalance
                     ) {
-                      setOrderAmount((prev) => + prev + plusAmount);
+                      setOrderAmount((prev) => +prev + plusAmount);
                     } else {
                       setOrderAmount(demoBalance);
                     }
@@ -1064,7 +1092,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                     const liveBalance = botBalance.balance;
                     const plusAmount = +orderAmount + +value;
                     if (
-                      typeof value === 'number' &&
+                      typeof value === "number" &&
                       plusAmount <= liveBalance
                     ) {
                       setOrderAmount((prev) => +prev + +value);
@@ -1073,7 +1101,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                     }
                   }
                 }}
-                prefix={'$ '}
+                prefix={"$ "}
                 PREFIX_VALUE="+"
                 VALUES={PLUS_VALUES}
               />
@@ -1113,7 +1141,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                   setIsOrderAmountFocus(true);
                 }}
                 onBlur={(e) => {
-                  if (Number((e.target.value.replace('$', '').trim() || 0)) <= 0)
+                  if (Number(e.target.value.replace("$", "").trim() || 0) <= 0)
                     setIsOrderAmountFocus(false);
                 }}
                 handleValueMinusOne={handleOrderAmountMinusOne}
@@ -1145,12 +1173,12 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                   // }
 
                   // CHECK IF PARTNER BOT ALREADY ASSOCIATED
-                  const isDemoAccount = selectedAccountType.value === 'DEMO';
+                  const isDemoAccount = selectedAccountType.value === "DEMO";
                   if (isDemoAccount) {
                     const demoBalance = botBalance.demo_balance;
                     const plusAmount = +orderAmount + +value;
                     if (
-                      typeof value === 'number' &&
+                      typeof value === "number" &&
                       plusAmount <= demoBalance
                     ) {
                       setOrderAmount((prev) => +prev + +value);
@@ -1163,7 +1191,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                     const liveBalance = botBalance.balance;
                     const plusAmount = +orderAmount + +value;
                     if (
-                      typeof value === 'number' &&
+                      typeof value === "number" &&
                       plusAmount <= liveBalance
                     ) {
                       setOrderAmount((prev) => +prev + +value);
@@ -1172,7 +1200,7 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                     }
                   }
                 }}
-                prefix={'$ '}
+                prefix={"$ "}
                 PREFIX_VALUE="+"
                 VALUES={PLUS_VALUES}
               />
@@ -1182,25 +1210,27 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
           {isMaster !== 2 && (
             <div className="mb-9 p-4 flex justify-between items-center bg-ink-05 rounded-2xl">
               <p>
-                LỢI NHUẬN{' '}
+                LỢI NHUẬN{" "}
                 <span className="px-2 bg-ink-10 rounded-lg text-green-100 font-semibold">
                   95%
                 </span>
               </p>
               <p
-                className={`text-xl ${+orderAmount >= 0 ? 'text-green-100' : 'text-red-100'
-                  } font-semibold`}
+                className={`text-xl ${
+                  +orderAmount >= 0 ? "text-green-100" : "text-red-100"
+                } font-semibold`}
               >
-                {+orderAmount >= 0 ? '+' : '-'}$
-                {(+orderAmount * 0.95).toLocaleString('en-US', options)}
+                {+orderAmount >= 0 ? "+" : "-"}$
+                {(+orderAmount * 0.95).toLocaleString("en-US", options)}
               </p>
             </div>
           )}
 
           <div className="mt-auto">
             <button
-              className={`py-4 mb-3 flex justify-center gap-x-[0.625rem] w-full rounded-2xl font-semibold ${isBuySellValid ? 'bg-green-100' : 'bg-ink-10 cursor-not-allowed'
-                }`}
+              className={`py-4 mb-3 flex justify-center gap-x-[0.625rem] w-full rounded-2xl font-semibold ${
+                isBuySellValid ? "bg-green-100" : "bg-ink-10 cursor-not-allowed"
+              }`}
               onClick={() => {
                 // if(!(typeof orderAmount === 'number') || orderAmount <= 0){
                 //   setModalAttributes((prev) => ({
@@ -1238,14 +1268,15 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
                 // } else if (isBuySellValid) {
                 //   placeOrder(OrderType.BUY);
                 // }
-                checkIsValidSubmit()
+                checkIsValidSubmit();
               }}
             >
               <span
-                className={`${isBuySellValid
-                  ? 'text-ink-100'
-                  : 'bg-primary-60 bg-clip-text text-transparent'
-                  }`}
+                className={`${
+                  isBuySellValid
+                    ? "text-ink-100"
+                    : "bg-primary-60 bg-clip-text text-transparent"
+                }`}
               >
                 Mua
               </span>
@@ -1266,30 +1297,31 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
 
             <div className="py-4 mb-3 flex justify-center gap-x-[0.625rem] w-full rounded-2xl bg-ink-05 font-semibold">
               <p className="bg-primary-100 bg-clip-text text-transparent font-medium">
-                Phiên {sessionId} :{' '}
-                {isSessionTrading ? 'Hãy đặt lệnh' : 'Chờ kết quả'} (
+                Phiên {sessionId} :{" "}
+                {isSessionTrading ? "Hãy đặt lệnh" : "Chờ kết quả"} (
                 {sessionLocal.r_second}
                 s)
               </p>
             </div>
 
             <button
-              className={`py-4 flex justify-center gap-x-[0.625rem] w-full rounded-2xl font-semibold ${isBuySellValid ? 'bg-red-100' : 'bg-ink-10 cursor-not-allowed'
-                }`}
+              className={`py-4 flex justify-center gap-x-[0.625rem] w-full rounded-2xl font-semibold ${
+                isBuySellValid ? "bg-red-100" : "bg-ink-10 cursor-not-allowed"
+              }`}
               onClick={() => {
                 if (partnerBotDatas.length === 0 && isBuySellValid) {
                   setModalAttributes((prev) => ({
                     ...prev,
                     isOpen: true,
                     icon: images.copy.account_not_integrate,
-                    headingMessage: 'Bạn chưa liên kết tài khoản',
+                    headingMessage: "Bạn chưa liên kết tài khoản",
                     message: (
                       <>
                         Liên kết tài khoản ngay để thực hiện giao dịch cùng đội
                         ngũ chuyên gia của BotLambotrade
                       </>
                     ),
-                    buttonMessage: 'Liên kết tài khoản',
+                    buttonMessage: "Liên kết tài khoản",
                     handleOpen: handleOpenAccountTradePopupModal,
                     handleClose: handleCloseAccountTradePopupModal,
                   }));
@@ -1299,16 +1331,17 @@ const CopyTradeInformation: FC<CopyTradeInformationProps> = ({ isMaster, callbac
               }}
             >
               <span
-                className={`${isBuySellValid
-                  ? 'text-ink-100'
-                  : 'bg-primary-60 bg-clip-text text-transparent'
-                  }`}
+                className={`${
+                  isBuySellValid
+                    ? "text-ink-100"
+                    : "bg-primary-60 bg-clip-text text-transparent"
+                }`}
               >
                 Bán
               </span>
               {isSessionTrading &&
-                +orderAmount > 0 &&
-                partnerBotDatas.length > 0 ? (
+              +orderAmount > 0 &&
+              partnerBotDatas.length > 0 ? (
                 <img
                   className="w-[1.5rem]"
                   src={images.copy.sell}
