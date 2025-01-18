@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.957e6c1d.css",
-    "main.js": "/static/js/main.7e73307d.js",
+    "main.js": "/static/js/main.e2a4aed4.js",
     "static/js/891.da3c05a2.chunk.js": "/static/js/891.da3c05a2.chunk.js",
     "static/js/463.5ab3b233.chunk.js": "/static/js/463.5ab3b233.chunk.js",
     "static/js/120.40db9f37.chunk.js": "/static/js/120.40db9f37.chunk.js",
@@ -11,7 +11,7 @@
     "static/css/86.1c63f0b3.chunk.css": "/static/css/86.1c63f0b3.chunk.css",
     "static/js/86.0473ad82.chunk.js": "/static/js/86.0473ad82.chunk.js",
     "static/css/601.1e399b0b.chunk.css": "/static/css/601.1e399b0b.chunk.css",
-    "static/js/601.4ed4f7a0.chunk.js": "/static/js/601.4ed4f7a0.chunk.js",
+    "static/js/601.7a2f1a55.chunk.js": "/static/js/601.7a2f1a55.chunk.js",
     "static/js/530.6baf84da.chunk.js": "/static/js/530.6baf84da.chunk.js",
     "static/js/170.f9a23fc2.chunk.js": "/static/js/170.f9a23fc2.chunk.js",
     "static/js/259.b24ba579.chunk.js": "/static/js/259.b24ba579.chunk.js",
@@ -48,15 +48,15 @@
     "static/media/Login_out_Mobile_Background.png": "/static/media/Login_out_Mobile_Background.077a1d7e963df1447f2a.png",
     "static/media/Menu_Logo.svg": "/static/media/Menu_Logo.dbf5445cb1eb78a6d0d80c1dc4972370.svg",
     "static/media/FontsFree-Net-SFProText-Regular.ttf": "/static/media/FontsFree-Net-SFProText-Regular.90da7ab18293ca42e335.ttf",
-    "static/media/banner-db-mb.jpg": "/static/media/banner-db-mb.f5d1fd4177a109cb1764.jpg",
-    "static/media/banner-db-tb.jpg": "/static/media/banner-db-tb.49e4464b29d357284937.jpg",
     "static/media/Home_Robot.png": "/static/media/Home_Robot.02df814806399f8671f5.png",
     "static/media/Copy_Master_One.svg": "/static/media/Copy_Master_One.601e64924383933bcbd01100710a9b3a.svg",
     "static/media/Home_Robot_Blue.png": "/static/media/Home_Robot_Blue.43fd74635b9774a3f387.png",
-    "static/media/banner-db.jpg": "/static/media/banner-db.62db70a4f5b59054e876.jpg",
+    "static/media/banner-db-mb.jpg": "/static/media/banner-db-mb.7af670f2d42e7c44fc4c.jpg",
     "static/media/Home_Fibo_Win.svg": "/static/media/Home_Fibo_Win.bdad9ec985b5484a2ba6cebc77902687.svg",
     "static/media/copy_trade_ai_buy.jpg": "/static/media/copy_trade_ai_buy.cef4bba59628bfb04bb1.jpg",
+    "static/media/banner-db-tb.jpg": "/static/media/banner-db-tb.ba2ac39edc442ff2c291.jpg",
     "static/media/copy_trade_ai_.jpg": "/static/media/copy_trade_ai_.3e2cd903026b667914d9.jpg",
+    "static/media/banner-db.jpg": "/static/media/banner-db.7b756a28481a2566d417.jpg",
     "static/media/Home_Gold_1.svg": "/static/media/Home_Gold_1.36688fc3ba7b2ee02b42bc31faa7f895.svg",
     "static/media/Login_out_Spinning.svg": "/static/media/Login_out_Spinning.6f15f9b2d3e060810982d1a00d89736a.svg",
     "static/media/Home_Star_Gold_2.svg": "/static/media/Home_Star_Gold_2.13501e7d73f5d428aae5caa56aa5776a.svg",
@@ -190,7 +190,7 @@
     "static/media/trending_up.svg": "/static/media/trending_up.515920285df32dfe436a5f2da466ba5c.svg",
     "static/media/trending_down.svg": "/static/media/trending_down.5a7e37d99d9df253531f63d122d5ebf6.svg",
     "main.957e6c1d.css.map": "/static/css/main.957e6c1d.css.map",
-    "main.7e73307d.js.map": "/static/js/main.7e73307d.js.map",
+    "main.e2a4aed4.js.map": "/static/js/main.e2a4aed4.js.map",
     "891.da3c05a2.chunk.js.map": "/static/js/891.da3c05a2.chunk.js.map",
     "463.5ab3b233.chunk.js.map": "/static/js/463.5ab3b233.chunk.js.map",
     "120.40db9f37.chunk.js.map": "/static/js/120.40db9f37.chunk.js.map",
@@ -200,7 +200,7 @@
     "86.1c63f0b3.chunk.css.map": "/static/css/86.1c63f0b3.chunk.css.map",
     "86.0473ad82.chunk.js.map": "/static/js/86.0473ad82.chunk.js.map",
     "601.1e399b0b.chunk.css.map": "/static/css/601.1e399b0b.chunk.css.map",
-    "601.4ed4f7a0.chunk.js.map": "/static/js/601.4ed4f7a0.chunk.js.map",
+    "601.7a2f1a55.chunk.js.map": "/static/js/601.7a2f1a55.chunk.js.map",
     "530.6baf84da.chunk.js.map": "/static/js/530.6baf84da.chunk.js.map",
     "170.f9a23fc2.chunk.js.map": "/static/js/170.f9a23fc2.chunk.js.map",
     "259.b24ba579.chunk.js.map": "/static/js/259.b24ba579.chunk.js.map",
@@ -234,6 +234,6 @@
   },
   "entrypoints": [
     "static/css/main.957e6c1d.css",
-    "static/js/main.7e73307d.js"
+    "static/js/main.e2a4aed4.js"
   ]
 }
